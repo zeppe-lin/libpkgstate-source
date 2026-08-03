@@ -11,3 +11,5 @@ grep -F "'libpkgstate'" "$root/meson.build" >/dev/null || fail 'missing dependen
 grep -F "version: '>=3.0.0'" "$root/meson.build" >/dev/null || fail 'missing floor libpkgstate >=3.0.0'
 grep -F "'libpkgsource'" "$root/meson.build" >/dev/null || fail 'missing dependency libpkgsource'
 grep -F "version: '>=3.0.0'" "$root/meson.build" >/dev/null || fail 'missing floor libpkgsource >=3.0.0'
+grep -F "soversion: '1'" "$root/src/meson.build" >/dev/null || fail 'SONAME generation changed'
+test -s "$root/abi/libpkgstate-source.exports" || fail 'ABI manifest is absent'

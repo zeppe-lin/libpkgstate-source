@@ -8,3 +8,5 @@ if grep -R -F 'libpkgimage' "$root/include" "$root/src" "$root/meson.build" "$ro
 if grep -R -F 'libpkgplan' "$root/include" "$root/src" "$root/meson.build" "$root/src/meson.build" >/dev/null 2>&1; then fail 'forbidden authority dependency: libpkgplan'; fi
 if grep -R -F 'libpkgapply' "$root/include" "$root/src" "$root/meson.build" "$root/src/meson.build" >/dev/null 2>&1; then fail 'forbidden authority dependency: libpkgapply'; fi
 grep -F 'sealed libpkgsource snapshot -> package_source_record' "$root/docs/architecture.md" >/dev/null || fail 'authority flow is undocumented'
+grep -F "gnu_symbol_visibility: 'hidden'" "$root/src/meson.build" >/dev/null || fail 'hidden visibility is not enforced'
+test -s "$root/abi/libpkgstate-source.exports" || fail 'reviewed export manifest is absent'

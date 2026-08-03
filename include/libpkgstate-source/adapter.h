@@ -6,6 +6,8 @@
  */
 #pragma once
 
+#include <libpkgstate-source/export.h>
+
 #include <cstdint>
 #include <stdexcept>
 #include <string>
@@ -22,7 +24,7 @@ enum class projection_error_code : std::uint8_t {
   record_construction = 4,
 };
 
-class projection_error final : public std::invalid_argument {
+class PKGSTATE_SOURCE_API projection_error final : public std::invalid_argument {
 public:
   projection_error(projection_error_code code, std::string message);
   [[nodiscard]] projection_error_code code() const noexcept;
@@ -38,7 +40,7 @@ private:
  * recipe identity, and source snapshot identity. It performs no resolution,
  * build, installation, or state I/O.
  */
-[[nodiscard]] package_source_record project_source(
+[[nodiscard]] PKGSTATE_SOURCE_API package_source_record project_source(
     const pkgsource::source_snapshot& source,
     const pkgsource::architecture_reference& selected_build,
     const pkgsource::architecture_reference& selected_target);
