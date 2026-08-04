@@ -22,7 +22,7 @@ Target translate_identity(const Source& source)
   {
     return Target::parse(std::string("v1:sha256:") + source.hex());
   }
-  catch (const std::exception& error)
+  catch (const identity_error& error)
   {
     throw projection_error(
         projection_error_code::identity_translation,
@@ -229,18 +229,12 @@ package_source_record project_source(
   {
     throw;
   }
-  catch (const state_error& error)
+  catch (const error& failure)
   {
     throw projection_error(
         projection_error_code::record_construction,
         std::string("state rejected source record construction: ") +
-            error.what());
-  }
-  catch (const std::exception& error)
-  {
-    throw projection_error(
-        projection_error_code::record_construction,
-        std::string("cannot project sealed source authority: ") + error.what());
+            failure.what());
   }
 }
 

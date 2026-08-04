@@ -40,6 +40,14 @@ resolve dependencies, select architectures, fetch source material, execute a
 build, inspect an image, apply files, read a state store, or publish state. A
 failure is exported; no partial `package_source_record` is returned.
 
+## Failure translation
+
+The boundary translates only failures owned by the two semantic endpoints:
+`libpkgstate` identity and model refusals become `projection_error`. Allocation,
+logic, and unrelated runtime failures retain their native type. The adapter must
+not turn process failure into a package-policy refusal by catching
+`std::exception`.
+
 ## Dependency placement
 
 Both installed header dependencies are public because `project_source()`
