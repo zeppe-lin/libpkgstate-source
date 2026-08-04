@@ -141,6 +141,8 @@ projection_error::projection_error(projection_error_code code,
 {
 }
 
+projection_error::~projection_error() = default;
+
 projection_error_code projection_error::code() const noexcept
 {
   return code_;
