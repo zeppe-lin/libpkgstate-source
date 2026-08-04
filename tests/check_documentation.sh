@@ -12,3 +12,8 @@ for file in \
 done
 python3 "$root/tools/check-public-documentation.py" \
   "$root" libpkgstate-source libpkgstate-source.h
+
+python3 "$root/tools/check-man-markdown.py" \
+  --root "$root" --project libpkgstate-source --version 3.0.0
+python3 "$root/tools/check-html-manifest.py" \
+  --root "$root" --project libpkgstate-source
