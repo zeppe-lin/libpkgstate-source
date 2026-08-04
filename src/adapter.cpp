@@ -111,6 +111,28 @@ std::vector<architecture_reference> translate_architectures(
   return result;
 }
 
+architecture_binding project_architectures(
+    const pkgsource::architecture_requirements& source,
+    const pkgsource::architecture_reference& selected_build,
+    const pkgsource::architecture_reference& selected_target)
+{
+  try
+  {
+    return architecture_binding::make(
+        translate_architectures(source.build()),
+        translate_architectures(source.target()),
+        architecture_reference(selected_build.name()),
+        architecture_reference(selected_target.name()));
+  }
+  catch (const state_error& error)
+  {
+    throw projection_error(
+        projection_error_code::architecture_selection,
+        std::string("state rejected source architecture selection: ") +
+            error.what());
+  }
+}
+
 } // namespace
 
 projection_error::projection_error(projection_error_code code,
@@ -191,13 +213,8 @@ package_source_record project_source(
           std::move(declarations));
     }
 
-    const pkgsource::architecture_requirements& source_architectures =
-        recipe.architectures();
-    architecture_binding architectures = architecture_binding::make(
-        translate_architectures(source_architectures.build()),
-        translate_architectures(source_architectures.target()),
-        architecture_reference(selected_build.name()),
-        architecture_reference(selected_target.name()));
+    architecture_binding architectures = project_architectures(
+        recipe.architectures(), selected_build, selected_target);
 
     return package_source_record::make(
         std::move(release), std::move(metadata), std::move(runtime),
@@ -212,14 +229,10 @@ package_source_record project_source(
   }
   catch (const state_error& error)
   {
-    const std::string message = error.what();
-    const projection_error_code code =
-        message.find("architecture") != std::string::npos
-            ? projection_error_code::architecture_selection
-            : projection_error_code::record_construction;
-    throw projection_error(code,
-                           std::string("state projection rejected source: ") +
-                               message);
+    throw projection_error(
+        projection_error_code::record_construction,
+        std::string("state rejected source record construction: ") +
+            error.what());
   }
   catch (const std::exception& error)
   {
