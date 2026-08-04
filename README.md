@@ -54,6 +54,7 @@ Release after `libpkgstate` 3.0.0 and `libpkgsource` 3.0.0. Release before `libp
 - `docs/integration.md` — composition and release order;
 - `docs/testing.md` — qualification matrix;
 - `docs/abi.md` — ABI and pkg-config policy;
+- `man/libpkgstate-source.3.scdoc` — installed `libpkgstate-source.3` interface manual;
 - `MAINTAINING.md` — release gate.
 
 ## License

@@ -1,8 +1,8 @@
-PKGSTATE_SOURCE_ADAPTER(3)
+LIBPKGSTATE-SOURCE(3)
 
 # NAME
 
-pkgstate_source_adapter - retain sealed libpkgsource authority in installed state
+libpkgstate-source - retain sealed libpkgsource authority in installed state
 
 # SYNOPSIS
 
