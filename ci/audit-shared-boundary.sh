@@ -9,6 +9,6 @@ output=$(readelf -d "$library")
 printf '%s\n' "$output"
 printf '%s\n' "$output" | grep -F 'Library soname: [libpkgstate-source.so.1]' >/dev/null || { echo 'shared-boundary-audit: wrong SONAME' >&2; exit 1; }
 needed=$(printf '%s\n' "$output" | grep 'Shared library:' || true)
-printf '%s\n' "$needed" | grep -F 'Shared library: [libpkgstate.so.3]' >/dev/null || { echo 'shared-boundary-audit: missing libpkgstate.so.3' >&2; exit 1; }
+printf '%s\n' "$needed" | grep -F 'Shared library: [libpkgstate.so.4]' >/dev/null || { echo 'shared-boundary-audit: missing libpkgstate.so.4' >&2; exit 1; }
 printf '%s\n' "$needed" | grep -F 'Shared library: [libpkgsource.so.3]' >/dev/null || { echo 'shared-boundary-audit: missing libpkgsource.so.3' >&2; exit 1; }
 if printf '%s\n' "$needed" | grep -E 'libpkg(build|image|plan|apply)|libpkgstate-(build|plan|apply)|libcrypto|libarchive|libyaml' >/dev/null; then echo 'shared-boundary-audit: forbidden direct dependency' >&2; exit 1; fi
