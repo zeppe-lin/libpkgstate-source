@@ -45,7 +45,6 @@ pkgsource::source_snapshot source_snapshot()
 
   return pkgsource::seal_source(
       pkgsource::source_origin("recipe.yml"),
-      pkgsource::source_syntax::recipe_yaml_v1,
       pkgsource::recipe_declaration(
           pkgsource::package_release(
               pkgsource::package_reference("example"), "1.2.3", 2),
@@ -134,8 +133,6 @@ void projects_complete_source_authority()
   TEST_EQ(record.selected_profiles().front().profile().name(), "@toolchain");
   TEST_EQ(record.architectures().selected_build().name(), "x86_64");
   TEST_EQ(record.architectures().selected_target().name(), "x86_64");
-  TEST_EQ(record.recipe().string(),
-          std::string("v1:sha256:") + source.recipe().identity().hex());
   TEST_EQ(record.snapshot().string(),
           std::string("v1:sha256:") + source.identity().hex());
 }

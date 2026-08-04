@@ -17,7 +17,7 @@ libpkgstate-source - retain sealed libpkgsource authority in installed state
 **pkgstate::package_source_record**. The caller supplies selected build and target
 architectures; the adapter verifies each selection against the sealed recipe.
 
-The projection retains exact source-owned release, profile, recipe, and snapshot
+The projection retains exact source-owned release, selected-profile, and complete source-snapshot
 identities. It translates runtime requirements, all lifecycle programs,
 action-bound lifecycle requirements, metadata, selected profile declarations,
 and architecture requirements without resolving or executing anything.

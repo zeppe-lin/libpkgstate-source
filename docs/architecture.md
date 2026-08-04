@@ -29,8 +29,8 @@ The adapter refuses selections outside the sealed recipe constraints.
 
 A successful projection retains the exact package release, metadata, runtime
 requirements, lifecycle programs and action-bound requirements, selected build
-profiles, profile closure identities, architecture requirements, recipe
-identity, and source-snapshot identity. Identity material is translated by its
+profiles, profile closure identities, architecture requirements, and the
+complete source-snapshot identity. Identity material is translated by its
 canonical representation rather than re-derived from mutable source input.
 
 ## Non-authorities

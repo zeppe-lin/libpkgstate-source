@@ -11,3 +11,11 @@ grep -F 'sealed libpkgsource snapshot -> package_source_record' "$root/docs/arch
 grep -F "gnu_symbol_visibility: 'hidden'" "$root/src/meson.build" >/dev/null || fail 'hidden visibility is not enforced'
 test -s "$root/abi/libpkgstate-source.exports" || fail 'reviewed export manifest is absent'
 if grep -R -F 'catch (const std::exception' "$root/src" >/dev/null; then fail 'adapter launders unrelated process failures through std::exception'; fi
+if grep -R -E 'source_syntax|source_recipe_identity|recipe\(\)\.identity' \
+  "$root/include" "$root/src" >/dev/null || \
+  grep -R --exclude=check_architecture.sh -E \
+    'source_syntax|source_recipe_identity|recipe\(\)\.identity' \
+    "$root/tests" >/dev/null
+then
+  fail 'adapter retains retired libpkgsource authority'
+fi

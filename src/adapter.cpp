@@ -222,7 +222,6 @@ package_source_record project_source(
         std::move(release), std::move(metadata), std::move(runtime),
         std::move(programs), std::move(lifecycle_requirements),
         std::move(architectures), std::move(profiles),
-        translate_identity<source_recipe_identity>(recipe.identity()),
         translate_identity<source_snapshot_identity>(source.identity()));
   }
   catch (const projection_error&)

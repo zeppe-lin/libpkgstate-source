@@ -10,7 +10,11 @@ sealed libpkgsource snapshot + selected architectures -> package_source_record
 
 This repository owns the translation between a sealed `libpkgsource` snapshot and the state-owned `package_source_record` vocabulary. It is a translation boundary, not another semantic owner. Its input and output models remain authoritative in their respective repositories.
 
-The public operation accepts one sealed source snapshot and caller-selected build and target architectures. A successful projection retains release and metadata, runtime and lifecycle requirements, lifecycle programs, selected profiles, architecture constraints, and exact recipe and snapshot identities.
+The public operation accepts one sealed source snapshot and caller-selected
+build and target architectures. A successful projection retains release and
+metadata, runtime and lifecycle requirements, lifecycle programs, selected
+profiles, architecture constraints, and the exact complete source-snapshot
+identity.
 
 The adapter performs no discovery, parsing, dependency resolution, build execution, archive inspection, target mutation, state publication, migration, retry policy, or compatibility import unless the operation is explicitly part of the contract above. It exports refusal rather than guessing. It refuses identity vocabulary drift, unknown enum vocabulary, architecture selections outside sealed constraints, and state record construction failure.
 

@@ -56,7 +56,7 @@ private:
  * The caller supplies the exact build and target architecture selections. The
  * adapter verifies both selections against the sealed recipe and retains the
  * package release, metadata, runtime and lifecycle control, selected build
- * profiles, source recipe identity, and source snapshot identity.
+ * profiles and complete source snapshot identity.
  *
  * The projection performs no syntax parsing, profile selection, dependency
  * resolution, build, application, target observation, or state I/O. YAML or

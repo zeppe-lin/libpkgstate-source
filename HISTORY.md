@@ -9,3 +9,5 @@
 - Completed the documented public projection contract under Doxygen warnings-as-errors.
 - Renamed the installed manual from the former in-tree adapter name to `libpkgstate-source.3`.
 - Classify architecture-selection refusal structurally instead of inspecting diagnostic text.
+- Follow the `libpkgsource` 3.0 authority reset by removing syntax-generation
+  and recipe-identity assumptions from projection and tests.
