@@ -46,6 +46,7 @@ Both installed header dependencies are public because `project_source()`
 exposes `libpkgsource` input types and a `libpkgstate` result type. There is no
 planner, build, image, application, or persistence dependency.
 
-The implementation body and focused behavior test are byte-for-byte extractions
-from `libpkgstate` 2.5.1. The only normalized header differences are the
-independent library export annotation and its include.
+The root commit records the exact 2.5.1 implementation and behavior test.
+Subsequent commits may refine the independent adapter while the extraction
+contract continues to verify the immutable origin rather than freezing current
+implementation forever.
